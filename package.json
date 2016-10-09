@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
-    "lite":"lite-server",
-    "tsc":"tsc",
-    "tsc:w":"tsc -w",
-    "typings":"typings",
-    "postinstall":"typings install"
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\"",
+    "lite": "lite-server",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings",
+    "postinstall": "typings install"
   },
   "keywords": [],
   "author": "",
@@ -19,24 +19,9 @@
     "lite-server": "^2.2.2",
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
+  },
+  "dependencies": {
+    "core-js": "^2.4.1",
+    "zone.js": "^0.6.25"
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
