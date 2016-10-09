@@ -1,12 +1,13 @@
 //common
-const toSlug = input => encodeURIComponent(
+/*const toSlug = input => encodeURIComponent(
   input.split(' ')
     .map(str => str.toLowerCase())
     .join('-')
-);
+);*/
 
 //curry
-import { curry } from 'lodash/fp';
+/*import { curry } from 'lodash/fp';*/
+const curry = fn => (...args) => fn.bind(null, ...args);
 const map = curry((fn, arr) => arr.map(fn));
 const join = curry((str, arr) => arr.join(str));
 const toLowerCase = str => str.toLowerCase();

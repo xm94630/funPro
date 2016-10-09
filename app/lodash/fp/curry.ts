@@ -1,1 +1,1 @@
-const curry = fn => (...args) => fn.bind(null, ...args);
+//const curry = fn => (...args) => fn.bind(null, ...args);
