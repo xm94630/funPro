@@ -30,7 +30,8 @@ console.log(toSlug('Zhang Shanfeng'));
 //console.log的快捷键，这里自己运用了下“...args”，真是利索
 const l = (...args) => console.log.call(console,...args); 
 
-const bee = ((bee) => {
+let bee = null;
+bee = ((bee) => {
 
   /* 
    * 研究案例1: curry
