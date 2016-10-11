@@ -1,9 +1,3 @@
-
-//curry
-/*import { curry } from 'lodash/fp';*/
-/* 
-*/
-
 /*******************************
 * 第一章 启程
 ********************************/
@@ -202,15 +196,38 @@ bee = ((bee) => {
   };
 
 
+  /* 
+   * 研究案例9: 函数式编程 tap 【BOSS】
+   */
+  bee.case09 = () => {
 
+    const curry = fn => (...args) => fn.bind(null, ...args);
+    //tap
+    const tap = curry((fn, x) => {
+      fn(x);
+      return x;
+    });
 
+    const pipe = (...fns) => x => fns.reduce((v, f) => f(v), x);
 
+    const fn1 = s => s.toLowerCase();
+    const fn2 = s => s.split('').reverse().join('');
+    const fn3 = s => s + '!'
 
+    const newFunc = pipe(
+      fn1, 
+      fn2, 
+      tap((x)=>l(`我可以随意地接入，做我想做的，比如获取当前的值----> ${x}`)),
+      fn3
+    );
+    const result = newFunc('清晨我上马');
+    l(result)
+  };
 
   return bee;
 })(bee||{});
 
-//bee.case08();
+//bee.case09();
 
 
 
