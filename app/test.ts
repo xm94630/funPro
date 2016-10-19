@@ -224,10 +224,120 @@ bee = ((bee) => {
     l(result)
   };
 
+
+  /********************************************
+   * refactoring(重构)  
+   ********************************************/
+  /*
+   * 研究案例10: 初始
+   */
+  bee.case10 = () => {
+
+    function validateSsn(ssn) {
+        if (/^\d{3}-\d{2}-\d{4}$/.exec(ssn))
+            console.log('Valid SSN');
+        else
+            console.log('Invalid SSN');
+    }
+    function validatePhone(phone) {
+        if (/^\(\d{3}\)\d{3}-\d{4}$/.exec(phone))
+            console.log('Valid Phone Number');
+        else
+            console.log('Invalid Phone Number');
+    }
+    l('=>验证成功')
+    validateSsn('123-45-6789');
+    validatePhone('(111)222-3333');
+    l('=>失败成功')
+    validateSsn('123-123-123');
+    validatePhone('123456-123');
+  };
+
+  /*
+   * 研究案例11: 1级重构
+   * 在学函数式编程之前，这样子的改进是我常用的
+   * 注意：参数中没有传入函数
+   */
+  bee.case11 = () => {
+
+    function validateValue(value, regex, type) {
+        if (regex.exec(value))
+            console.log('Valid ' + type);
+        else
+            console.log('Invalid ' + type);
+    }
+    l('=>验证成功')
+    validateValue('123-45-6789',/^\d{3}-\d{2}-\d{4}$/,'Phone Number');
+  };
+
+  /*
+   * 研究案例12: 初始
+   * 这里和上面的略有不同
+   */
+  bee.case12 = () => {
+    //注意这里没有定义parseAddress、parseName，只是讲这个意思，不要调用
+    function validateAddress(address) {
+        if (parseAddress(address))
+            console.log('Valid Address');
+        else
+            console.log('Invalid Address');
+    }
+    function validateName(name) {
+        if (parseFullName(name))
+            console.log('Valid Name');
+        else
+            console.log('Invalid Name');
+    }
+  };
+
+  /*
+   * 研究案例13: 2级别重构（高阶函数）
+   * 参数中有函数，有函数会更加的灵活和通用！这个在《函数式》书上也说了
+   */
+  bee.case13 = () => {
+
+    function validateValueWithFunc(value, parseFunc, type) {
+        if (parseFunc(value))
+            console.log('Invalid ' + type);
+        else
+            console.log('Valid ' + type);
+    }
+    //可以这样子使用  
+    validateValueWithFunc('123-45-6789', /^\d{3}-\d{2}-\d{4}$/.exec, 'SSN');
+    validateValueWithFunc('(123)456-7890', /^\(\d{3}\)\d{3}-\d{4}$/.exec, 'Phone');
+    //这里没有定义parseAddress、parseName就不开了
+    //validateValueWithFunc('123 Main St.', parseAddress, 'Address');
+    //validateValueWithFunc('Joe Mama', parseName, 'Name');
+  };
+
+  /*
+   * 研究案例14: 3级别重构（高阶函数）
+   * 
+   */
+  bee.case14 = () => {
+
+    function validateValueWithFunc(value, parseFunc, type) {
+        if (parseFunc(value))
+            console.log('Invalid ' + type);
+        else
+            console.log('Valid ' + type);
+    }
+    //主要优化了这个
+    //虽然是小小的改变，却使用了返回函数的告诫函数，意义就不一样了
+    function makeRegexParser(regex) {
+        return regex.exec;
+    }
+    var parseSsn = makeRegexParser(/^\d{3}-\d{2}-\d{4}$/);
+    var parsePhone = makeRegexParser(/^\(\d{3}\)\d{3}-\d{4}$/);
+    validateValueWithFunc('123-45-6789', parseSsn, 'SSN');
+    validateValueWithFunc('(123)456-7890', parsePhone, 'Phone');
+  };
+
+
   return bee;
 })(bee||{});
 
-//bee.case09();
+bee.case13();
 
 
 
