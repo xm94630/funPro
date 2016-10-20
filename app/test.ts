@@ -1,5 +1,6 @@
 /*******************************
 * 第一章 启程
+* 第二章 
 ********************************/
 
 //console.log的快捷键，这里自己运用了下“...args”，真是利索
@@ -275,7 +276,10 @@ bee = ((bee) => {
    * 这里和上面的略有不同
    */
   bee.case12 = () => {
-    //注意这里没有定义parseAddress、parseName，只是讲这个意思，不要调用
+    //注意这里parseAddress、parseFullName是随便定义的
+    function parseAddress(address){return true;}
+    function parseFullName(name){return true;}
+
     function validateAddress(address) {
         if (parseAddress(address))
             console.log('Valid Address');
@@ -295,6 +299,10 @@ bee = ((bee) => {
    * 参数中有函数，有函数会更加的灵活和通用！这个在《函数式》书上也说了
    */
   bee.case13 = () => {
+
+    //注意这里parseAddress、parseName就不定义了
+    function parseAddress(){}
+    function parseName(){}
 
     function validateValueWithFunc(value, parseFunc, type) {
         if (parseFunc(value))
@@ -337,7 +345,7 @@ bee = ((bee) => {
   return bee;
 })(bee||{});
 
-bee.case13();
+//bee.case13();
 
 
 
