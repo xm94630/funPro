@@ -24,7 +24,7 @@ bee = ((bee) => {
 
     const add = (x,y) => x + y;
     const mult5 = value => value * 5;
-    const mult5AfterAdd10 = value => mult5(add(10,y));
+    const mult5AfterAdd10 = value => mult5(add(10,20));
     l(mult5AfterAdd10(10));
   };
 
@@ -78,7 +78,7 @@ bee = ((bee) => {
   return bee;
 })(bee||{});
 
-//bee.caseB05();
+//bee.caseB02();
 
 
 
